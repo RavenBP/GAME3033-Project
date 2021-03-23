@@ -123,6 +123,6 @@ public class EnemyArea : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, transform.lossyScale);
+        Gizmos.DrawWireCube(transform.position, GetComponent<BoxCollider>().size);
     }
 }
