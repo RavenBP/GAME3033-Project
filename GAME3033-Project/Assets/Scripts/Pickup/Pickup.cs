@@ -1,19 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Pickup : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField]
     private bool randomizePickup = false;
     [SerializeField]
     private PickupType pickupType;
+
+    [Header("References")]
+    [SerializeField]
+    private TMP_Text pickupText;
 
     public static int pickupsExisting;
 
     private void Start()
     {
         //pickupsExisting++;
+
+        // If this pickup is randomized
+        if (randomizePickup == true)
+        {
+            int randomInt = Random.Range(1, 100);
+
+            if (randomInt >= 0 && randomInt <= 24)
+            {
+                pickupType = PickupType.Health;
+            }
+            else if (randomInt >= 25 && randomInt <= 49)
+            {
+                pickupType = PickupType.Damage;
+            }
+            else if (randomInt >= 50 && randomInt <= 74)
+            {
+                pickupType = PickupType.Speed;
+            }
+            else if (randomInt >= 75)
+            {
+                pickupType = PickupType.Jump;
+            }
+
+            Debug.Log(this.gameObject.name.ToString() + " randomized to: " + pickupType.ToString());
+        }
+
+        pickupText.text = pickupType.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -21,30 +54,6 @@ public class Pickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player got pickup");
-
-            if (randomizePickup == true)
-            {
-                int randomInt = Random.Range(1, 100);
-
-                if (randomInt >= 0 && randomInt <= 24)
-                {
-                    pickupType = PickupType.Health;
-                }
-                else if (randomInt >= 25 && randomInt <= 49)
-                {
-                    pickupType = PickupType.Damage;
-                }
-                else if (randomInt >= 50 && randomInt <= 74)
-                {
-                    pickupType = PickupType.Speed;
-                }
-                else if (randomInt >= 75)
-                {
-                    pickupType = PickupType.Jump;
-                }
-
-                Debug.Log("Pickup randomized to: " + pickupType);
-            }
 
             switch (pickupType)
             {
