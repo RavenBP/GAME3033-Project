@@ -7,6 +7,8 @@ public class EnemyAttack : MonoBehaviour
 {
     [SerializeField]
     private int damage = 10;
+    [SerializeField]
+    private float attackSpeed = 1.5f;
 
     private PlayerController playerController;
 
@@ -19,13 +21,15 @@ public class EnemyAttack : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         canAttack = false;
         isRunning = false;
+
+        damage = EnemyStats.globalDamage;
     }
 
     private void Update()
     {
         if (canAttack && isRunning == false)
         {
-            InvokeRepeating("Attack", 0.0f, 2.0f);
+            InvokeRepeating("Attack", 0.0f, attackSpeed);
             isRunning = true;
         }
         else if (canAttack == false && isRunning)
@@ -40,20 +44,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // TODO: Add functionality for enemy to continously attack.
-            // Maybe add an invoke function here?
-            // And CancelInvoke when TriggerExit?
             Debug.Log("Player entered attack radius");
 
             canAttack = true;
-
-            //playerController.health -= damage;
-            //Debug.Log("Player health: " + playerController.health.ToString());
-
-            //if (playerController.health <= 0)
-            //{
-            //    SceneManager.LoadScene("ResultsScene");
-            //}
         }
     }
 
@@ -69,8 +62,8 @@ public class EnemyAttack : MonoBehaviour
     private void Attack()
     {
         playerController.currentHealth -= damage;
-        Debug.Log("Current player health: " + playerController.currentHealth.ToString());
 
+        // Player has no health remaining
         if (playerController.currentHealth <= 0)
         {
             Cursor.visible = true;

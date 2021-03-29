@@ -109,9 +109,9 @@ public class EnemyArea : MonoBehaviour
 
     void SpawnEnemies()
     {
-        int randomInt = Random.Range(0, spawnPositions.Length);
+        //int randomInt = Random.Range(0, spawnPositions.Length);
 
-        Debug.Log("Random Number = " + randomInt.ToString());
+        //Debug.Log("Random Number = " + randomInt.ToString());
 
         for (int i = 0; i < spawnPositions.Length; i++)
         {

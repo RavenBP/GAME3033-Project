@@ -13,6 +13,8 @@ public class Enemy : MonoBehaviour
         enemiesExisting++;
 
         //InvokeRepeating(nameof(NumEnemies), 0.0f, 1.0f);
+
+        health = EnemyStats.globalHealth;
     }
 
     void NumEnemies()

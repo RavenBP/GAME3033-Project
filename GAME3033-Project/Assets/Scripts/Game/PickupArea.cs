@@ -34,7 +34,7 @@ public class PickupArea : MonoBehaviour
 
             exit.SetActive(false);
 
-            // TODO: Destroy the rest of the pickups to prevent player from grabbing them
+            // Destroy any other pickups
             Pickup[] spawnedPickups = FindObjectsOfType<Pickup>();
 
             for (int i = 0; i < spawnedPickups.Length; i++)
@@ -44,6 +44,8 @@ public class PickupArea : MonoBehaviour
             }
 
             CancelInvoke(nameof(CheckPickups));
+
+            EnemyStats.IncreaseStats();
         }
     }
 
