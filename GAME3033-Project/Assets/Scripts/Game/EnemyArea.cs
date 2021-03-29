@@ -113,8 +113,12 @@ public class EnemyArea : MonoBehaviour
 
         Debug.Log("Random Number = " + randomInt.ToString());
 
+        for (int i = 0; i < spawnPositions.Length; i++)
+        {
+            Instantiate(enemyPrefab, spawnPositions[i]);
+        }
 
-        Instantiate(enemyPrefab, spawnPositions[randomInt]);
+        //Instantiate(enemyPrefab, spawnPositions[randomInt]);
 
         entrance.SetActive(true);
         exit.SetActive(true);
