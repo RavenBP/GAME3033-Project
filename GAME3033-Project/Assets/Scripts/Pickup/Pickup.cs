@@ -58,17 +58,28 @@ public class Pickup : MonoBehaviour
             switch (pickupType)
             {
                 case PickupType.Health:
-                    other.gameObject.GetComponent<PlayerController>().maximumHealth += 10;
+                    // Increase player's maximum health
+                    int newHealth = other.gameObject.GetComponent<PlayerController>().maximumHealth += 10;
+                    // Clamp player's health
+                    other.gameObject.GetComponent<PlayerController>().maximumHealth = Mathf.Clamp(newHealth, other.gameObject.GetComponent<PlayerController>().maximumHealth, 300);
+                    // Restore player's health
                     other.gameObject.GetComponent<PlayerController>().currentHealth = other.gameObject.GetComponent<PlayerController>().maximumHealth;
                     break;
                 case PickupType.Damage:
+                    // Increase player's damage
                     other.gameObject.GetComponent<PlayerController>().playerDamage += 5;
                     break;
                 case PickupType.Speed:
-                    other.gameObject.GetComponent<PlayerController>().playerSpeed += 2.0f;
+                    // Increase player's speed
+                    float newSpeed = other.gameObject.GetComponent<PlayerController>().playerSpeed += 1.0f;
+                    // Clamp player's speed
+                    other.gameObject.GetComponent<PlayerController>().playerSpeed = Mathf.Clamp(newSpeed, other.gameObject.GetComponent<PlayerController>().playerSpeed, 20.0f);
                     break;
                 case PickupType.Jump:
-                    other.gameObject.GetComponent<PlayerController>().jumpHeight += 1.0f;
+                    // Increase player's jump height
+                    float newJumpHeight = other.gameObject.GetComponent<PlayerController>().jumpHeight += 0.2f;
+                    // Clamp player's jump height
+                    other.gameObject.GetComponent<PlayerController>().jumpHeight = Mathf.Clamp(newJumpHeight, other.gameObject.GetComponent<PlayerController>().jumpHeight, 3.0f);
                     break;
             }
 

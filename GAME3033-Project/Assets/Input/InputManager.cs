@@ -54,4 +54,9 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Shoot.triggered;
     }
+
+    public bool PlayerIncreasedHealth()
+    {
+        return playerControls.Player.Health.triggered;
+    }
 }

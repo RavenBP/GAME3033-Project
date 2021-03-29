@@ -54,5 +54,24 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
+
+        //if (inputManager.PlayerIncreasedHealth())
+        //{
+        //    // Increase health
+        //    int newHealth = maximumHealth += 10;
+        //    maximumHealth = Mathf.Clamp(newHealth, maximumHealth, 300);
+        //    currentHealth = maximumHealth;
+
+        //    // Increase damage
+        //    playerDamage += 5;
+
+        //    // Increase speed
+        //    float newSpeed = playerSpeed += 1.0f;
+        //    playerSpeed = Mathf.Clamp(newSpeed, playerSpeed, 20);
+
+        //    // Increase jump height
+        //    float newJumpHeight = jumpHeight += 0.2f;
+        //    jumpHeight = Mathf.Clamp(newJumpHeight, jumpHeight, 3.0f);
+        //}
     }
 }

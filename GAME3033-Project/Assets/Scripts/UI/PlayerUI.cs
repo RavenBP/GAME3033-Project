@@ -16,6 +16,10 @@ public class PlayerUI : MonoBehaviour
 
     private PlayerController playerController;
 
+    private bool damageNeedsUpdate = true;
+    private bool speedNeedsUpdate = true;
+    private bool jumpHeightNeedsUpdate = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +29,31 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / " + playerController.maximumHealth.ToString();
 
         playerDamageText.text = "DMG: " + playerController.playerDamage.ToString();
+        
+        playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / " + playerController.maximumHealth.ToString();
+
+        // Set text to MAX
+        if (playerController.maximumHealth >= 300)
+        {
+            playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / MAX";
+        }
 
         playerSpeedText.text = "SPD: " + playerController.playerSpeed.ToString();
 
+        // Set text to MAX
+        if (playerController.playerSpeed >= 20.0f)
+        {
+            playerSpeedText.text = "SPD: MAX";
+        }
+
         playerJumpHeightText.text = "JMP: " + playerController.jumpHeight.ToString();
+
+        // Set text to MAX
+        if (playerController.jumpHeight >= 3.0f)
+        {
+            playerJumpHeightText.text = "JMP: MAX";
+        }
     }
 }
