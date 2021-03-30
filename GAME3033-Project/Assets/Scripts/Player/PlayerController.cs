@@ -1,4 +1,5 @@
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 
     public int currentHealth;
 
+    public static bool gamePaused = false;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -34,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         groundedPlayer = controller.isGrounded;
+
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -55,23 +59,19 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
 
-        //if (inputManager.PlayerIncreasedHealth())
-        //{
-        //    // Increase health
-        //    int newHealth = maximumHealth += 10;
-        //    maximumHealth = Mathf.Clamp(newHealth, maximumHealth, 300);
-        //    currentHealth = maximumHealth;
-
-        //    // Increase damage
-        //    playerDamage += 5;
-
-        //    // Increase speed
-        //    float newSpeed = playerSpeed += 1.0f;
-        //    playerSpeed = Mathf.Clamp(newSpeed, playerSpeed, 20);
-
-        //    // Increase jump height
-        //    float newJumpHeight = jumpHeight += 0.2f;
-        //    jumpHeight = Mathf.Clamp(newJumpHeight, jumpHeight, 3.0f);
-        //}
+        if (gamePaused == true)
+        {
+            if (GetComponentInChildren<CinemachineVirtualCamera>().enabled == true)
+            {
+                GetComponentInChildren<CinemachineVirtualCamera>().enabled = false;
+            }
+        }
+        if (gamePaused == false)
+        {
+            if (GetComponentInChildren<CinemachineVirtualCamera>().enabled == false)
+            {
+                GetComponentInChildren<CinemachineVirtualCamera>().enabled = true;
+            }
+        }
     }
 }

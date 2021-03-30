@@ -55,8 +55,8 @@ public class InputManager : MonoBehaviour
         return playerControls.Player.Shoot.triggered;
     }
 
-    public bool PlayerIncreasedHealth()
+    public bool PlayerPaused()
     {
-        return playerControls.Player.Health.triggered;
+        return playerControls.Player.Pause.triggered;
     }
 }

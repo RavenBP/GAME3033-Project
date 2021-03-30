@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Health",
+                    "name": "Pause",
                     "type": "Button",
                     "id": "cbcac063-98b6-4f60-a3f9-55009d680710",
                     "expectedControlType": "Button",
@@ -138,11 +138,22 @@
                 {
                     "name": "",
                     "id": "38f23796-a7de-47ab-b3d8-b27bd4014ad2",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Health",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3e5f68d8-9bd1-4d5d-8d1f-52e86151f361",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
