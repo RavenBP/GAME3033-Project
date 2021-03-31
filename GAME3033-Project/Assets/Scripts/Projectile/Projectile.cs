@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float speed = 20.0f;
     [SerializeField]
-    private float lifetime = 2.0f;
+    private float lifetime = 1.0f;
 
     public Vector3 cameraForward;
     public int damage;

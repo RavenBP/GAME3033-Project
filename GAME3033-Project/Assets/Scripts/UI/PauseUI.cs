@@ -8,7 +8,9 @@ public class PauseUI : MonoBehaviour
     [SerializeField]
     GameObject pausePanel;
     [SerializeField]
-    PlayerController playerController;
+    GameObject statsPanel;
+    [SerializeField]
+    GameObject healthPanel;
 
     private InputManager inputManager;
 
@@ -21,12 +23,10 @@ public class PauseUI : MonoBehaviour
     {
         if (inputManager.PlayerPaused() && pausePanel.activeSelf == false)
         {
-            Debug.Log("Game paused");
             PauseGame();
         }
         else if (inputManager.PlayerPaused() && pausePanel.activeSelf == true)
         {
-            Debug.Log("Game unpaused");
             UnPauseGame();
         }
     }
@@ -35,6 +35,8 @@ public class PauseUI : MonoBehaviour
     {
         Time.timeScale = 0.0f;
 
+        statsPanel.SetActive(false);
+        healthPanel.SetActive(false);
         pausePanel.SetActive(true);
         PlayerController.gamePaused = true;
     }
@@ -44,6 +46,7 @@ public class PauseUI : MonoBehaviour
         Time.timeScale = 1.0f;
 
         pausePanel.SetActive(false);
+        healthPanel.SetActive(true);
         PlayerController.gamePaused = false;
     }
 }

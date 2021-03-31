@@ -59,4 +59,9 @@ public class InputManager : MonoBehaviour
     {
         return playerControls.Player.Pause.triggered;
     }
+
+    public bool PlayerViewingStats()
+    {
+        return playerControls.Player.ViewStats.triggered;
+    }
 }

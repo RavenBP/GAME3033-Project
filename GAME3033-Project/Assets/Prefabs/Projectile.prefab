@@ -45,9 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  lifetime: 2
-  cameraForward: {x: 0.034119863, y: 0.00044491063, z: 0.99941766}
-  damage: 0
+  lifetime: 1
+  cameraForward: {x: -0.58096194, y: -0.010124701, z: 0.81386775}
+  damage: 10
 --- !u!1 &4296983153211557216
 GameObject:
   m_ObjectHideFlags: 0

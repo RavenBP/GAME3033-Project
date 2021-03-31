@@ -16,10 +16,6 @@ public class PlayerUI : MonoBehaviour
 
     private PlayerController playerController;
 
-    private bool damageNeedsUpdate = true;
-    private bool speedNeedsUpdate = true;
-    private bool jumpHeightNeedsUpdate = true;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +25,6 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         playerDamageText.text = "DMG: " + playerController.playerDamage.ToString();
         
         playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / " + playerController.maximumHealth.ToString();

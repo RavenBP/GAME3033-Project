@@ -9,10 +9,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.PlayerShootingThisFrame())
+        if (InputManager.Instance.PlayerShootingThisFrame() && PlayerController.gamePaused == false)
         {
-            //Debug.Log("Player fired");
-
             projectilePrefab.GetComponent<Projectile>().cameraForward = GetComponentInChildren<Camera>().transform.forward;
             projectilePrefab.GetComponent<Projectile>().damage = GetComponent<PlayerController>().playerDamage;
 
