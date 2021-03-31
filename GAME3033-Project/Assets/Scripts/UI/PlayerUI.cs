@@ -20,6 +20,7 @@ public class PlayerUI : MonoBehaviour
     void Start()
     {
         playerController = FindObjectOfType<PlayerController>();
+        GameManager.Instance.reachedEnd = false;
     }
 
     // Update is called once per frame

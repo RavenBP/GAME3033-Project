@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
 
     public EnemyArea currentArea;
     public bool currentAreaCompleted = true;
+    public bool reachedEnd = false;
     public int loopCount = 0;
 
     private static GameManager instance;
