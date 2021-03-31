@@ -39,6 +39,9 @@ public class PauseUI : MonoBehaviour
         healthPanel.SetActive(false);
         pausePanel.SetActive(true);
         PlayerController.gamePaused = true;
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void UnPauseGame()
@@ -48,5 +51,8 @@ public class PauseUI : MonoBehaviour
         pausePanel.SetActive(false);
         healthPanel.SetActive(true);
         PlayerController.gamePaused = false;
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

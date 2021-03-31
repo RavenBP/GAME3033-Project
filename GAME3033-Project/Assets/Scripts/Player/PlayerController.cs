@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         cameraTransform = Camera.main.transform;
 
         currentHealth = maximumHealth;
+        gamePaused = false;
     }
 
     void Update()
