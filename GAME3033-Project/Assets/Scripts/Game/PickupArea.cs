@@ -31,6 +31,9 @@ public class PickupArea : MonoBehaviour
             Debug.Log(pickupPositions.Length + " = pickupPositions.Length");
             invokeRunning = false;
             GameManager.Instance.currentAreaCompleted = true;
+            GameManager.Instance.loopCount += 1;
+
+            Debug.Log("Loop increased to: " + GameManager.Instance.loopCount);
 
             exit.SetActive(false);
 
@@ -62,9 +65,6 @@ public class PickupArea : MonoBehaviour
                 if (GameManager.Instance.currentAreaCompleted == true)
                 {
                     SpawnPickups();
-
-                    //invokeRunning = true;
-                    //InvokeRepeating(nameof(CheckPickups), 0.0f, 1.0f);
                 }
                 else
                 {

@@ -11,8 +11,7 @@ public class GameManager : MonoBehaviour
 
     public EnemyArea currentArea;
     public bool currentAreaCompleted = true;
-
-    //GameObject secondArea;
+    public int loopCount = 0;
 
     private static GameManager instance;
 
@@ -28,10 +27,5 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-    }
-
-    private void Update()
-    {
-
     }
 }

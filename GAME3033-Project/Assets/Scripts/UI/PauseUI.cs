@@ -11,6 +11,8 @@ public class PauseUI : MonoBehaviour
     GameObject statsPanel;
     [SerializeField]
     GameObject healthPanel;
+    [SerializeField]
+    GameObject loopPanel;
 
     private InputManager inputManager;
 
@@ -37,6 +39,7 @@ public class PauseUI : MonoBehaviour
 
         statsPanel.SetActive(false);
         healthPanel.SetActive(false);
+        loopPanel.SetActive(false);
         pausePanel.SetActive(true);
         PlayerController.gamePaused = true;
 
@@ -50,6 +53,7 @@ public class PauseUI : MonoBehaviour
 
         pausePanel.SetActive(false);
         healthPanel.SetActive(true);
+        loopPanel.SetActive(true);
         PlayerController.gamePaused = false;
 
         Cursor.visible = false;
