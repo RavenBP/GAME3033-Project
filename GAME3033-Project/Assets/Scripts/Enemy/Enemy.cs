@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 100;
+    public int currentHealth = 100;
+    public int maximumHealth;
 
     public static int enemiesExisting = 0;
 
@@ -14,7 +15,8 @@ public class Enemy : MonoBehaviour
 
         //InvokeRepeating(nameof(NumEnemies), 0.0f, 1.0f);
 
-        health = EnemyStats.globalHealth;
+        maximumHealth = EnemyStats.globalHealth;
+        currentHealth = maximumHealth;
     }
 
     void NumEnemies()
@@ -26,14 +28,14 @@ public class Enemy : MonoBehaviour
     {
         if (collision.collider.CompareTag("Projectile"))
         {
-            health -= collision.gameObject.GetComponentInParent<Projectile>().damage;
-            Debug.Log(gameObject.name.ToString() + " health: " + health.ToString());
+            currentHealth -= collision.gameObject.GetComponentInParent<Projectile>().damage;
+            Debug.Log(gameObject.name.ToString() + " health: " + currentHealth.ToString());
 
             // Destroy projectile
             Destroy(collision.gameObject);
 
             // Enemy has no health remaining
-            if (health <= 0)
+            if (currentHealth <= 0)
             {
                 // Destroy enemy
                 enemiesExisting--;
