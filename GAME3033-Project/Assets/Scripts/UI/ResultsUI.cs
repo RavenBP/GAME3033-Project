@@ -13,6 +13,9 @@ public class ResultsUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         if (GameManager.Instance.reachedEnd == true)
         {
             resultsText.text = "GAME COMPLETED";
