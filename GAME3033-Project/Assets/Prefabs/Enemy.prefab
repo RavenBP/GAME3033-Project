@@ -519,6 +519,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealthText: {fileID: 8118373966007371410}
   maximumHealthText: {fileID: 7486064502136589351}
+--- !u!1 &6598416263208817868
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2872466480723041458}
+  m_Layer: 0
+  m_Name: ProjectileSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2872466480723041458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598416263208817868}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.522, z: 0.981}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7064499157626755209}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7064499156874924067
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +617,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7118981437844654323}
+  - {fileID: 2872466480723041458}
   m_Father: {fileID: 7064499156874924066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -681,6 +712,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47b1fe568b8fb0e458475bcfce3dc351, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 4296983152936889903, guid: 1819084b7e9f1914386fee16c4e49407, type: 3}
+  projectileSocket: {fileID: 2872466480723041458}
   currentHealth: 100
   maximumHealth: 0
 --- !u!195 &1091271597

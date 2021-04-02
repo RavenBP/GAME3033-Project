@@ -82,6 +82,35 @@ public class PlayerController : MonoBehaviour
         CheckPaused();
     }
 
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.CompareTag("Projectile"))
+    //    {
+    //        Debug.Log("TRIGGER ENTER PROJCTILE");
+    //    }
+    //}
+
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.collider.CompareTag("Projectile"))
+    //    {
+    //        Debug.Log("ENEMY HIT PLAYER WITH PROJECTILE");
+
+    //        //collision.gameObject.GetComponent<Enemy>().health -= 10;
+    //        //Debug.Log(gameObject.name.ToString() + " health: " + collision.gameObject.GetComponent<Enemy>().health.ToString());
+
+    //        //// Enemy has no health remaining
+    //        //if (collision.gameObject.GetComponent<Enemy>().health <= 0)
+    //        //{
+    //        //    // Destroy enemy
+    //        //    Destroy(collision.gameObject);
+    //        //}
+
+    //        //Destroy projectile
+    //        Destroy(this.gameObject);
+    //    }
+    //}
+
     public void CheckPaused()
     {
         if (gamePaused == true)

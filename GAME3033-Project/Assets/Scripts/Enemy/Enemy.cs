@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    GameObject projectilePrefab;
+    [SerializeField]
+    Transform projectileSocket;
+
     public int currentHealth = 100;
     public int maximumHealth;
 
@@ -15,8 +20,20 @@ public class Enemy : MonoBehaviour
 
         //InvokeRepeating(nameof(NumEnemies), 0.0f, 1.0f);
 
+        Debug.Log("Enemy created");
+
+        //StartCoroutine(FireProjectile());
+
+        InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
+
         maximumHealth = EnemyStats.globalHealth;
         currentHealth = maximumHealth;
+    }
+
+    private void FireProjectile()
+    {
+        Debug.Log("Projectile Fired!");
+        Instantiate(projectilePrefab, projectileSocket.position, transform.rotation);
     }
 
     void NumEnemies()
