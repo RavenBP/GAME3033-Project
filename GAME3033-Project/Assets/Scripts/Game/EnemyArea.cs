@@ -4,22 +4,15 @@ using UnityEngine;
 
 public class EnemyArea : MonoBehaviour
 {
-    // Maybe make an entrance door and exit door?
-    // Entrance door will remain active while exit will be deactivated?
+    [Header("Settings")]
+    [SerializeField]
+    private int spawnPercentage = 85;
+
+    [Header("References")]
     [SerializeField]
     GameObject entrance;
     [SerializeField]
     GameObject exit;
-
-
-    // Maybe make a Transform array that can have multiple positions defined?
-    // Then I can just get a random number for each enemy and have them spawn in different areas
-    //[SerializeField]
-    //Transform spawnPosition1;
-    //[SerializeField]
-    //Transform spawnPosition2;
-    //[SerializeField]
-    //Transform spawnPosition3;
 
     [SerializeField]
     private Transform[] spawnPositions;
@@ -109,16 +102,15 @@ public class EnemyArea : MonoBehaviour
 
     void SpawnEnemies()
     {
-        //int randomInt = Random.Range(0, spawnPositions.Length);
-
-        //Debug.Log("Random Number = " + randomInt.ToString());
-
         for (int i = 0; i < spawnPositions.Length; i++)
         {
-            Instantiate(enemyPrefab, spawnPositions[i]);
-        }
+            int randomNum = Random.Range(0, 100);
 
-        //Instantiate(enemyPrefab, spawnPositions[randomInt]);
+            if (randomNum >= (100 - spawnPercentage))
+            {
+                Instantiate(enemyPrefab, spawnPositions[i]);
+            }
+        }
 
         entrance.SetActive(true);
         exit.SetActive(true);

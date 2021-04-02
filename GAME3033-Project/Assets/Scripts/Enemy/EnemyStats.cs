@@ -9,8 +9,8 @@ public class EnemyStats
 
     public static void IncreaseStats()
     {
-        globalHealth += 5;
-        globalDamage += 5;
+        globalHealth += 3;
+        globalDamage += 3;
     }
 
     public static void IncreaseStats(int health, int damage)
