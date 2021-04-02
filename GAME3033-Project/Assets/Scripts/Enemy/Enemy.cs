@@ -7,12 +7,17 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     GameObject projectilePrefab;
     [SerializeField]
+    Transform projectileRotation;
+    [SerializeField]
     Transform projectileSocket;
 
     public int currentHealth = 100;
     public int maximumHealth;
 
     public static int enemiesExisting = 0;
+
+    private Vector3 direction;
+    private Transform playerTransform;
 
     private void Start()
     {
@@ -22,12 +27,17 @@ public class Enemy : MonoBehaviour
 
         Debug.Log("Enemy created");
 
-        //StartCoroutine(FireProjectile());
+        playerTransform = FindObjectOfType<PlayerController>().gameObject.transform;
 
         InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
 
         maximumHealth = EnemyStats.globalHealth;
         currentHealth = maximumHealth;
+    }
+
+    private void Update()
+    {
+        projectileRotation.LookAt(playerTransform.transform);
     }
 
     private void FireProjectile()

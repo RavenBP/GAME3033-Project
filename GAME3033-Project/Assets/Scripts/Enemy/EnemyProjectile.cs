@@ -25,6 +25,7 @@ public class EnemyProjectile : MonoBehaviour
     public IEnumerator FireProjectile(Vector3 camForward)
     {
         // Fire projectile towards camera direction
+        //gameObject.GetComponentInChildren<Rigidbody>().AddForce((transform.forward) * speed, ForceMode.Impulse);
         gameObject.GetComponentInChildren<Rigidbody>().AddForce((transform.forward) * speed, ForceMode.Impulse);
 
         yield return new WaitForSeconds(lifetime);
