@@ -12,8 +12,10 @@ public class Spikes : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            // Lower player's health
             other.gameObject.GetComponent<PlayerController>().currentHealth -= damage;
 
+            // Player has no health
             if (other.gameObject.GetComponent<PlayerController>().currentHealth <= 0)
             {
                 SceneManager.LoadScene("ResultsScene");
@@ -21,8 +23,10 @@ public class Spikes : MonoBehaviour
         }
         else if (other.CompareTag("Enemy"))
         {
+            // Lower enemy's health
             other.gameObject.GetComponentInChildren<Enemy>().currentHealth -= damage;
 
+            // Enemy has no health
             if (other.gameObject.GetComponentInChildren<Enemy>().currentHealth <= 0)
             {
                 // Destroy enemy

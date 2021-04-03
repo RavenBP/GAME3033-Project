@@ -10,12 +10,11 @@ public class EnemyProjectile : MonoBehaviour
     [SerializeField]
     private float lifetime = 5.0f;
 
-    public int damage = 5;
+    public int damage = EnemyStats.globalDamage / 2;
 
     private GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
 
@@ -36,16 +35,13 @@ public class EnemyProjectile : MonoBehaviour
     {
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Default"))
         {
-            Debug.Log("Projectile OnCollisionEnter");
-
             // Destroy the projectile
             Destroy(this.transform.parent.gameObject);
         }
 
         if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log("Player hit by Enemy Projectile");
-
+            // Decrease player's health
             collision.gameObject.GetComponent<PlayerController>().currentHealth -= damage;
 
             // Enemy has no health remaining

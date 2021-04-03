@@ -26,17 +26,17 @@ public class PlayerUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playerDamageText.text = "DMG: " + playerController.playerDamage.ToString();
+        playerDamageText.text = $"DMG: {playerController.playerDamage}";
         
-        playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / " + playerController.maximumHealth.ToString();
+        playerHealthText.text = $"HP: {playerController.currentHealth} / {playerController.maximumHealth}";
 
         // Set text to MAX
         if (playerController.maximumHealth >= 300)
         {
-            playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / MAX";
+            playerHealthText.text = $"HP: {playerController.currentHealth} / MAX";
         }
 
-        playerSpeedText.text = "SPD: " + playerController.playerSpeed.ToString();
+        playerSpeedText.text = $"SPD: {playerController.playerSpeed}";
 
         // Set text to MAX
         if (playerController.playerSpeed >= 20.0f)
@@ -44,7 +44,7 @@ public class PlayerUI : MonoBehaviour
             playerSpeedText.text = "SPD: MAX";
         }
 
-        playerJumpHeightText.text = "JMP: " + playerController.jumpHeight.ToString();
+        playerJumpHeightText.text = $"JMP: {playerController.jumpHeight}";
 
         // Set text to MAX
         if (playerController.jumpHeight >= 3.0f)

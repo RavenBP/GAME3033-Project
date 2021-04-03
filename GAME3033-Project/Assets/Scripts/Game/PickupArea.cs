@@ -20,34 +20,28 @@ public class PickupArea : MonoBehaviour
     void CheckPickups()
     {
         // One of the pickups have been picked up
-        if (Pickup.pickupsExisting >= pickupPositions.Length)
+        if (Pickup.pickupsExisting < pickupPositions.Length)
         {
-            Debug.Log(Pickup.pickupsExisting.ToString() + " pickups remaining.");
-        }
-        else
-        {
-            Debug.Log("A pickup was picked up");
-            Debug.Log(Pickup.pickupsExisting.ToString() + " pickups remaining.");
-            Debug.Log(pickupPositions.Length + " = pickupPositions.Length");
             invokeRunning = false;
             GameManager.Instance.currentAreaCompleted = true;
             GameManager.Instance.loopCount += 1;
 
-            Debug.Log("Loop increased to: " + GameManager.Instance.loopCount);
-
+            // Disable (open) the next door
             exit.SetActive(false);
 
             // Destroy any other pickups
             Pickup[] spawnedPickups = FindObjectsOfType<Pickup>();
 
+            // Destroy all pickups
             for (int i = 0; i < spawnedPickups.Length; i++)
             {
                 Destroy(spawnedPickups[i].gameObject);
-                Pickup.pickupsExisting--;
             }
 
-            CancelInvoke(nameof(CheckPickups));
+            // Reset number of total pickups
+            Pickup.pickupsExisting = 0;
 
+            CancelInvoke(nameof(CheckPickups));
             EnemyStats.IncreaseStats();
         }
     }
@@ -89,6 +83,7 @@ public class PickupArea : MonoBehaviour
         invokeRunning = true;
         InvokeRepeating(nameof(CheckPickups), 0.0f, 1.0f);
 
+        // Enable (close) room's doors
         entrance.SetActive(true);
         exit.SetActive(true);
     }

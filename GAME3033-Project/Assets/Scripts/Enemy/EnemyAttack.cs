@@ -22,6 +22,7 @@ public class EnemyAttack : MonoBehaviour
         canAttack = false;
         isRunning = false;
 
+        // Set enemy's damage
         damage = EnemyStats.globalDamage;
     }
 
@@ -44,8 +45,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player entered attack radius");
-
+            //Debug.Log("Player entered attack radius");
             canAttack = true;
         }
     }
@@ -54,18 +54,20 @@ public class EnemyAttack : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player left attack radius");
+            //Debug.Log("Player left attack radius");
             canAttack = false;
         }
     }
 
     private void Attack()
     {
+        // Decrease player's health
         playerController.currentHealth -= damage;
 
         // Player has no health remaining
         if (playerController.currentHealth <= 0)
         {
+            // Prepare cursor for Results Scene
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
 

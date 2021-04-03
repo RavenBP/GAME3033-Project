@@ -19,8 +19,6 @@ public class Pickup : MonoBehaviour
 
     private void Start()
     {
-        //pickupsExisting++;
-
         // If this pickup is randomized
         if (randomizePickup == true)
         {

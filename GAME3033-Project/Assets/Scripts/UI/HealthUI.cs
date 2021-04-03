@@ -18,12 +18,13 @@ public class HealthUI : MonoBehaviour
 
     private void Update()
     {
-        playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / " + playerController.maximumHealth.ToString();
+        playerHealthText.text = $"HP: {playerController.currentHealth} / {playerController.maximumHealth}";
 
         // Set text to MAX
         if (playerController.maximumHealth >= 300)
         {
-            playerHealthText.text = "HP: " + playerController.currentHealth.ToString() + " / MAX";
+            playerHealthText.text = $"HP: {playerController.currentHealth} / MAX";
         }
     }
 }
+

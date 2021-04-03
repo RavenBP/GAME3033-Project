@@ -25,50 +25,52 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
+        // Increment number of total enemies
         enemiesExisting++;
 
+        // Find player's transform
         playerTransform = FindObjectOfType<PlayerController>().gameObject.transform;
 
+        // Set enemy's health
         maximumHealth = EnemyStats.globalHealth;
 
         switch (enemyType)
         {
             case EnemyType.MeleeEnemy:
+                // No special values needed
                 break;
             case EnemyType.ShootingEnemy:
+                // Beging firing projectiles
                 InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
                 break;
             case EnemyType.SmallEnemy:
+                // Lower health / Increase speed
                 maximumHealth -= 50;
                 GetComponent<NavMeshAgent>().speed = 8.0f;
                 break;
         }
 
+        // Set current health to full
         currentHealth = maximumHealth;
     }
 
     private void Update()
     {
+        // Make projectile socket rotate towards player's transform
         projectileRotation.LookAt(playerTransform.transform);
     }
 
     private void FireProjectile()
     {
-        Debug.Log("Projectile Fired!");
         Instantiate(projectilePrefab, projectileSocket.position, transform.rotation);
-    }
-
-    void NumEnemies()
-    {
-        Debug.Log("NumEnemies: " + enemiesExisting.ToString());
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Projectile"))
         {
+            // Lower health by projectile damage
             currentHealth -= collision.gameObject.GetComponentInParent<Projectile>().damage;
-            Debug.Log(gameObject.name.ToString() + " health: " + currentHealth.ToString());
 
             // Destroy projectile
             Destroy(collision.gameObject);
@@ -76,8 +78,9 @@ public class Enemy : MonoBehaviour
             // Enemy has no health remaining
             if (currentHealth <= 0)
             {
-                // Destroy enemy
+                // Decrease amount of total enemies
                 enemiesExisting--;
+                // Destroy enemy
                 Destroy(this.transform.parent.gameObject);
             }
         }

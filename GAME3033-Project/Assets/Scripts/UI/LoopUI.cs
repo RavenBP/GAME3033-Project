@@ -11,14 +11,12 @@ public class LoopUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO: Implement better concatenation for strings.
-        loopText.text = "Loop: " + GameManager.Instance.loopCount.ToString();
+        loopText.text = $"Loop: {GameManager.Instance.loopCount}";
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TODO: Make more efficient
-        loopText.text = "Loop: " + GameManager.Instance.loopCount.ToString();
+        loopText.text = $"Loop: {GameManager.Instance.loopCount}";
     }
 }
