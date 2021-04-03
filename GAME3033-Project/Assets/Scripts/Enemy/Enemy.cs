@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Enemy : MonoBehaviour
     Transform projectileRotation;
     [SerializeField]
     Transform projectileSocket;
+
+    [SerializeField]
+    private EnemyType enemyType;
 
     public int currentHealth = 100;
     public int maximumHealth;
@@ -23,15 +27,23 @@ public class Enemy : MonoBehaviour
     {
         enemiesExisting++;
 
-        //InvokeRepeating(nameof(NumEnemies), 0.0f, 1.0f);
-
-        Debug.Log("Enemy created");
-
         playerTransform = FindObjectOfType<PlayerController>().gameObject.transform;
 
-        InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
-
         maximumHealth = EnemyStats.globalHealth;
+
+        switch (enemyType)
+        {
+            case EnemyType.MeleeEnemy:
+                break;
+            case EnemyType.ShootingEnemy:
+                InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
+                break;
+            case EnemyType.SmallEnemy:
+                maximumHealth -= 50;
+                GetComponent<NavMeshAgent>().speed = 8.0f;
+                break;
+        }
+
         currentHealth = maximumHealth;
     }
 
@@ -70,4 +82,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+}
+
+public enum EnemyType
+{
+    MeleeEnemy,
+    ShootingEnemy,
+    SmallEnemy
 }

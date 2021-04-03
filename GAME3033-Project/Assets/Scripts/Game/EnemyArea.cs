@@ -18,7 +18,11 @@ public class EnemyArea : MonoBehaviour
     private Transform[] spawnPositions;
 
     [SerializeField]
-    GameObject enemyPrefab;
+    GameObject meleeEnemyPrefab;
+    [SerializeField]
+    GameObject shootingEnemyPrefab;
+    [SerializeField]
+    GameObject smallEnemyPrefab;
 
     public bool allEnemiesDefeated = false;
 
@@ -62,6 +66,8 @@ public class EnemyArea : MonoBehaviour
                     {
                         GameManager.Instance.currentArea = this;
                         GameManager.Instance.currentAreaCompleted = false;
+
+                        Enemy.enemiesExisting = 0;
 
                         SpawnEnemies();
 
@@ -108,7 +114,19 @@ public class EnemyArea : MonoBehaviour
 
             if (randomNum >= (100 - spawnPercentage))
             {
-                Instantiate(enemyPrefab, spawnPositions[i]);
+                int randNum = Random.Range(0, 100);
+                if (randNum >= 0 && randNum <= 40)
+                {
+                    Instantiate(meleeEnemyPrefab, spawnPositions[i]);
+                }
+                else if (randNum >= 41 && randNum <= 80)
+                {
+                    Instantiate(shootingEnemyPrefab, spawnPositions[i]);
+                }
+                else if (randNum >= 81 && randNum <= 100)
+                {
+                    Instantiate(smallEnemyPrefab, spawnPositions[i]);
+                }
             }
         }
 

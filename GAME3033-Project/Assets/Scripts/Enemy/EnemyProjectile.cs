@@ -24,23 +24,13 @@ public class EnemyProjectile : MonoBehaviour
 
     public IEnumerator FireProjectile(Vector3 camForward)
     {
-        // Fire projectile towards camera direction
-        //gameObject.GetComponentInChildren<Rigidbody>().AddForce((transform.forward) * speed, ForceMode.Impulse);
         gameObject.GetComponentInChildren<Rigidbody>().AddForce((transform.forward) * speed, ForceMode.Impulse);
 
         yield return new WaitForSeconds(lifetime);
 
         // Destroy projectile
-        Destroy(this.gameObject);
+        Destroy(this.transform.parent.gameObject);
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("ENEMY HIT PLAYER WITH PROJECTILE");
-    //    }
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -65,7 +55,7 @@ public class EnemyProjectile : MonoBehaviour
             }
 
             //Destroy projectile
-            Destroy(this.gameObject);
+            Destroy(this.transform.parent.gameObject);
         }
     }
 }
