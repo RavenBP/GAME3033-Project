@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
+            GetComponent<CharacterController>().stepOffset = 0.3f;
         }
 
         // Player movement
@@ -70,6 +71,7 @@ public class PlayerController : MonoBehaviour
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+            GetComponent<CharacterController>().stepOffset = 0.0f;
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
