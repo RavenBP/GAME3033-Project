@@ -15,6 +15,9 @@ public class EnemyArea : MonoBehaviour
     GameObject exit;
 
     [SerializeField]
+    AudioClip[] audioClips;
+
+    [SerializeField]
     private Transform[] spawnPositions;
 
     [SerializeField]
@@ -27,6 +30,13 @@ public class EnemyArea : MonoBehaviour
     public bool allEnemiesDefeated = false;
 
     private bool invokeRunning = false;
+
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     void CheckEnemies()
     {
@@ -44,6 +54,8 @@ public class EnemyArea : MonoBehaviour
 
             //entrance.SetActive(false);
             exit.SetActive(false);
+            audioSource.clip = audioClips[1];
+            audioSource.Play();
 
             CancelInvoke(nameof(CheckEnemies));
         }
@@ -70,6 +82,8 @@ public class EnemyArea : MonoBehaviour
                         Enemy.enemiesExisting = 0;
 
                         SpawnEnemies();
+                        audioSource.clip = audioClips[0];
+                        audioSource.Play();
 
                         invokeRunning = true;
                         InvokeRepeating(nameof(CheckEnemies), 0.0f, 1.0f);
@@ -129,6 +143,8 @@ public class EnemyArea : MonoBehaviour
                 }
             }
         }
+
+
 
         entrance.SetActive(true);
         exit.SetActive(true);

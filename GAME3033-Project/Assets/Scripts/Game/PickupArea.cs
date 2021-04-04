@@ -20,6 +20,13 @@ public class PickupArea : MonoBehaviour
 
     private bool invokeRunning = false;
 
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     void CheckPickups()
     {
         // One of the pickups have been picked up
@@ -62,6 +69,7 @@ public class PickupArea : MonoBehaviour
                 if (GameManager.Instance.currentAreaCompleted == true)
                 {
                     SpawnPickups();
+                    audioSource.Play();
                     pickupDoor.SetActive(false);
                 }
                 else
