@@ -18,11 +18,13 @@ public class ResultsUI : MonoBehaviour
 
         if (GameManager.Instance.reachedEnd == true)
         {
+            resultsText.color = Color.green;
             resultsText.text = "GAME COMPLETED";
             // TODO: Change background image.
         }
         else if (GameManager.Instance.reachedEnd == false)
         {
+            resultsText.color = Color.red;
             resultsText.text = "GAME OVER";
             // TODO: Change background image.
         }
