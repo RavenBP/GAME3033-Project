@@ -10,6 +10,9 @@ public class PickupArea : MonoBehaviour
     GameObject exit;
 
     [SerializeField]
+    GameObject pickupDoor;
+
+    [SerializeField]
     GameObject pickupPrefab;
 
     [SerializeField]
@@ -59,6 +62,7 @@ public class PickupArea : MonoBehaviour
                 if (GameManager.Instance.currentAreaCompleted == true)
                 {
                     SpawnPickups();
+                    pickupDoor.SetActive(false);
                 }
                 else
                 {
@@ -69,6 +73,15 @@ public class PickupArea : MonoBehaviour
             {
                 Debug.Log("The invoke is already running!");
             }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            //Debug.Log("PLAYER EXITED PICKUP AREA");
+            pickupDoor.SetActive(true);
         }
     }
 
@@ -86,5 +99,11 @@ public class PickupArea : MonoBehaviour
         // Enable (close) room's doors
         entrance.SetActive(true);
         exit.SetActive(true);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position + GetComponent<BoxCollider>().center, GetComponent<BoxCollider>().size);
     }
 }
