@@ -8,6 +8,13 @@ public class BoundsVolume : MonoBehaviour
     [SerializeField]
     private Transform spawnPosition;
 
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -21,6 +28,7 @@ public class BoundsVolume : MonoBehaviour
 
             // Lower player health
             other.gameObject.GetComponent<PlayerController>().currentHealth -= 10;
+            audioSource.Play();
 
             // Player has no health remaining
             if (other.gameObject.GetComponent<PlayerController>().currentHealth <= 0)

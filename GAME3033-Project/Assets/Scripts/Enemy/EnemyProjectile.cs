@@ -13,10 +13,12 @@ public class EnemyProjectile : MonoBehaviour
     public int damage = EnemyStats.globalDamage / 2;
 
     private GameObject player;
+    private AudioSource audioSource;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
 
         StartCoroutine(FireProjectile(player.transform.position));
     }
@@ -24,6 +26,7 @@ public class EnemyProjectile : MonoBehaviour
     public IEnumerator FireProjectile(Vector3 camForward)
     {
         gameObject.GetComponentInChildren<Rigidbody>().AddForce((transform.forward) * speed, ForceMode.Impulse);
+        audioSource.Play();
 
         yield return new WaitForSeconds(lifetime);
 

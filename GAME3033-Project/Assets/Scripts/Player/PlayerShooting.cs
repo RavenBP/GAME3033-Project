@@ -6,6 +6,8 @@ public class PlayerShooting : MonoBehaviour
 {
     [SerializeField]
     private GameObject projectilePrefab;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private void Update()
     {
@@ -15,6 +17,7 @@ public class PlayerShooting : MonoBehaviour
             projectilePrefab.GetComponent<Projectile>().damage = GetComponent<PlayerController>().playerDamage;
 
             Instantiate(projectilePrefab, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+            audioSource.Play();
         }
     }
 }

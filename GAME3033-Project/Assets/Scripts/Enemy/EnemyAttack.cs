@@ -9,6 +9,8 @@ public class EnemyAttack : MonoBehaviour
     private int damage = 10;
     [SerializeField]
     private float attackSpeed = 1.5f;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private PlayerController playerController;
 
@@ -30,7 +32,7 @@ public class EnemyAttack : MonoBehaviour
     {
         if (canAttack && isRunning == false)
         {
-            InvokeRepeating("Attack", 0.0f, attackSpeed);
+            InvokeRepeating("Attack", 0.5f, attackSpeed);
             isRunning = true;
         }
         else if (canAttack == false && isRunning)
@@ -61,6 +63,8 @@ public class EnemyAttack : MonoBehaviour
 
     private void Attack()
     {
+        audioSource.Play();
+
         // Decrease player's health
         playerController.currentHealth -= damage;
 

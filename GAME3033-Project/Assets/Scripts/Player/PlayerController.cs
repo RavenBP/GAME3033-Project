@@ -27,12 +27,15 @@ public class PlayerController : MonoBehaviour
     GameObject statsUI;
     [SerializeField]
     GameObject healthUI;
+    [SerializeField]
+    private AudioSource audioSource;
 
     private CharacterController controller;
     private InputManager inputManager;
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform cameraTransform;
+    private CinemachineVirtualCamera cinemachineVirtualCamera;
 
 
     public static bool gamePaused = false;
@@ -40,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        cinemachineVirtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();
         inputManager = InputManager.Instance;
         cameraTransform = Camera.main.transform;
 
@@ -56,7 +60,7 @@ public class PlayerController : MonoBehaviour
         if (groundedPlayer && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
-            GetComponent<CharacterController>().stepOffset = 0.3f;
+            controller.stepOffset = 0.3f;
         }
 
         // Player movement
@@ -71,7 +75,8 @@ public class PlayerController : MonoBehaviour
         if (inputManager.PlayerJumpedThisFrame() && groundedPlayer)
         {
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            GetComponent<CharacterController>().stepOffset = 0.0f;
+            controller.stepOffset = 0.0f;
+            audioSource.Play();
         }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
@@ -88,16 +93,16 @@ public class PlayerController : MonoBehaviour
     {
         if (gamePaused == true)
         {
-            if (GetComponentInChildren<CinemachineVirtualCamera>().enabled == true)
+            if (cinemachineVirtualCamera.enabled == true)
             {
-                GetComponentInChildren<CinemachineVirtualCamera>().enabled = false;
+                cinemachineVirtualCamera.enabled = false;
             }
         }
         else if (gamePaused == false)
         {
-            if (GetComponentInChildren<CinemachineVirtualCamera>().enabled == false)
+            if (cinemachineVirtualCamera.enabled == false)
             {
-                GetComponentInChildren<CinemachineVirtualCamera>().enabled = true;
+                cinemachineVirtualCamera.enabled = true;
             }
         }
     }

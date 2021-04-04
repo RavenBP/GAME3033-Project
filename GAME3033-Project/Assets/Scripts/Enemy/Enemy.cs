@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     Transform projectileRotation;
     [SerializeField]
     Transform projectileSocket;
+    [SerializeField]
+    private AudioSource audioSource;
 
     [SerializeField]
     private EnemyType enemyType;
@@ -41,7 +43,7 @@ public class Enemy : MonoBehaviour
                 break;
             case EnemyType.ShootingEnemy:
                 // Beging firing projectiles
-                InvokeRepeating(nameof(FireProjectile), 0.0f, 2.0f);
+                InvokeRepeating(nameof(FireProjectile), Random.Range(0.0f, 1.0f), Random.Range(1.5f, 3.0f));
                 break;
             case EnemyType.SmallEnemy:
                 // Lower health / Increase speed
@@ -71,6 +73,7 @@ public class Enemy : MonoBehaviour
         {
             // Lower health by projectile damage
             currentHealth -= collision.gameObject.GetComponentInParent<Projectile>().damage;
+            audioSource.Play();
 
             // Destroy projectile
             Destroy(collision.gameObject);

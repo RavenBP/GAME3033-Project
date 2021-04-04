@@ -8,12 +8,20 @@ public class Spikes : MonoBehaviour
     [SerializeField]
     private int damage = 10;
 
+    private AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             // Lower player's health
             other.gameObject.GetComponent<PlayerController>().currentHealth -= damage;
+            audioSource.Play();
 
             // Player has no health
             if (other.gameObject.GetComponent<PlayerController>().currentHealth <= 0)
@@ -25,6 +33,7 @@ public class Spikes : MonoBehaviour
         {
             // Lower enemy's health
             other.gameObject.GetComponentInChildren<Enemy>().currentHealth -= damage;
+            audioSource.Play();
 
             // Enemy has no health
             if (other.gameObject.GetComponentInChildren<Enemy>().currentHealth <= 0)
